@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChakraProvider, Container, VStack, Heading, Button, Text, Input, Box, FormControl, FormLabel, Link, extendTheme } from "@chakra-ui/react";
-import { FaUserCircle, FaLock, FaCalendarAlt } from "react-icons/fa";
+import { FaUserCircle, FaLock, FaCalendarAlt, FaHome, FaInfoCircle, FaUserPlus, FaTools } from "react-icons/fa";
 
 const theme = extendTheme({
   components: {
@@ -21,7 +21,7 @@ const Index = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Container centerContent p={4}>
+      <Container centerContent p={4} bg="brand.700" color="white">
         <VStack spacing={4}>
           <Heading>Vaccination Slot Booking</Heading>
           <ButtonGroup navigate={navigate} />
@@ -39,16 +39,28 @@ const Index = () => {
 
 const ButtonGroup = ({ navigate }) => (
   <VStack>
-    <Button onClick={() => navigate("home")}>Home</Button>
-    <Button onClick={() => navigate("about")}>About</Button>
-    <Button onClick={() => navigate("login")}>Login</Button>
-    <Button onClick={() => navigate("signup")}>Signup</Button>
-    <Button onClick={() => navigate("admin")}>Admin Dashboard</Button>
-    <Button onClick={() => navigate("booking")}>Book Slot</Button>
+    <Button onClick={() => navigate("home")} leftIcon={<FaHome />}>
+      Home
+    </Button>
+    <Button onClick={() => navigate("about")} leftIcon={<FaInfoCircle />}>
+      About
+    </Button>
+    <Button onClick={() => navigate("login")} leftIcon={<FaUserCircle />}>
+      Login
+    </Button>
+    <Button onClick={() => navigate("signup")} leftIcon={<FaUserPlus />}>
+      Signup
+    </Button>
+    <Button onClick={() => navigate("admin")} leftIcon={<FaTools />}>
+      Admin Dashboard
+    </Button>
+    <Button onClick={() => navigate("booking")} leftIcon={<FaCalendarAlt />}>
+      Book Slot
+    </Button>
   </VStack>
 );
 
-const Home = () => <Text>Welcome to the Vaccination Slot Booking System.</Text>;
+const Home = () => <Text>Welcome to the Vaccination Slot Booking System. Today's date is {new Date().toLocaleDateString()}.</Text>;
 
 const About = () => <Text>This system helps users to book vaccination slots easily.</Text>;
 
@@ -62,7 +74,7 @@ const Login = () => (
       <FormLabel>Password</FormLabel>
       <Input placeholder="Enter your password" type="password" />
     </FormControl>
-    <Button mt={4} leftIcon={<FaUserCircle />}>
+    <Button mt={4} leftIcon={<FaUserCircle />} _hover={{ bg: "brand.800" }}>
       Login
     </Button>
   </Box>
